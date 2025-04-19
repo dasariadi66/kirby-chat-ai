@@ -42,7 +42,7 @@ function performSearch() {
         .catch(err => {
             console.error(err);
             resultsContainer.style.display = 'block';
-            resultsContainer.innerHTML = `<p>An error occurred while fetching the data.</p>`;
+            resultsContainer.innerHTML = `<p><strong>Poyo! I am sorry but I am error-ing out right now. Try again later. Have a good day poyo!!</strong></p>`;
         });
 }
 
