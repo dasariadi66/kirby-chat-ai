@@ -1,0 +1,95 @@
+body {
+    font-family: 'Baloo 2', sans-serif; /* Playful font */
+    margin: 0;
+    padding: 0;
+    background-color: #ffe4e1; /* Pastel pink background */
+    background: url('https://i.guim.co.uk/img/media/34f64f80d88e37cf97f24a8799cb1eff65c2d8c1/105_0_1353_812/master/1353.jpg?width=1200&quality=85&auto=format&fit=max&s=bf988160e63881cb6606ad47b09eca51');
+    background-size: auto;
+    color: #333;
+}
+
+header {
+    text-align: center;
+    padding: 20px 0;
+    background-color: #ffc0cb; /* Light pink header background */
+    box-shadow: 0 4px 8px rgba(255, 182, 193, 0.5); /* Soft pink shadow */
+    border-bottom: 3px solid #ff69b4; /* Hot pink border */
+}
+
+h1 {
+    color: #ff69b4; /* Hot pink color */
+    font-size: 3rem;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(255, 105, 180, 0.5); /* Fluffy shadow effect */
+    margin: 0;
+}
+
+.search-container {
+    display: flex; /* Align items horizontally */
+    align-items: center; /* Vertically center items */
+    gap: 10px; /* Space between elements */
+    margin: 20px auto;
+    max-width: 800px; /* Adjust width for better layout */
+    justify-content: center;
+    background-color: #ffe4e1; /* Light pink background */
+    padding: 15px;
+    border-radius: 15px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(255, 182, 193, 0.5); /* Soft shadow */
+}
+
+input[type="text"] {
+    padding: 10px;
+    width: 300px;
+    border: 2px solid #ff69b4; /* Hot pink border */
+    border-radius: 20px; /* Rounded corners */
+    font-size: 16px;
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    background-color: #fff0f5; /* Light pink input background */
+}
+
+input[type="text"]:focus {
+    border-color: #ff1493; /* Deep pink border on focus */
+    box-shadow: 0 0 8px rgba(255, 105, 180, 0.8); /* Glowing pink shadow */
+}
+
+button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 20px; /* Rounded corners */
+    background-color: #ff69b4; /* Hot pink background */
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 6px rgba(255, 105, 180, 0.5); /* Soft shadow */
+}
+
+button:hover {
+    background-color: #ff1493; /* Deep pink on hover */
+    transform: scale(1.1); /* Slightly enlarge on hover */
+}
+
+button:active {
+    background-color: #c71585; /* Medium violet red on click */
+}
+
+.search-results {
+    display: none; /* Initially hidden */
+    padding: 15px;
+    border: 2px solid #ff69b4; /* Hot pink border */
+    border-radius: 20px; /* Rounded corners */
+    background-color: #fff0f5; /* Light pink background */
+    box-shadow: 0 4px 8px rgba(255, 182, 193, 0.5); /* Soft shadow */
+    font-size: 16px;
+    color: #333;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.search-results p {
+    margin: 0;
+    line-height: 1.5;
+    color: #ff1493; /* Deep pink text */
+    font-weight: bold;
+}
