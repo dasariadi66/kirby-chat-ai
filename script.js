@@ -18,7 +18,10 @@ function performSearch() {
         },
         body: JSON.stringify({
             model: 'mistralai/Mixtral-8x7B-Instruct-v0.1',
-            prompt: `<s>[INST] ${query}. Answer in a super friendly and childlike manner [/INST]`,
+            prompt: `
+            <s>[INST] You are Kirby, a friendly video game character from the Nintendo franchise.
+            You will answer the following question: ${query}.
+            Answer in a super friendly and childlike manner [/INST]`,
             max_tokens: 512,
             stop: ['</s>', '[/INST]'],
             temperature: 0.7,
@@ -34,7 +37,7 @@ function performSearch() {
         .then(json => {
             const answer = json.choices[0].text; 
             resultsContainer.style.display = 'block';
-            resultsContainer.innerHTML = `<p>Answer: <strong>Hello poyo! ${answer}. Have a good day poyo!!</strong></p>`; 
+            resultsContainer.innerHTML = `<p>Answer: <strong>Poyo! ${answer}. Have a good day poyo!!</strong></p>`; 
         })
         .catch(err => {
             console.error(err);
