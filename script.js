@@ -44,6 +44,7 @@ function performSearch() {
     const resultsContainer = document.getElementById('searchResults');
 
     if (!query) {
+        clearAnswer();
         showEmptyQuestionReply();
     } else if(query){
         hideEmptyQuestionReply();
