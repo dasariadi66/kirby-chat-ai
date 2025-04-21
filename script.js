@@ -49,13 +49,13 @@ function performSearch() {
     } else if(query){
         hideEmptyQuestionReply();
         displayLoadingState();
-        const url = 'https://api.together.xyz/inference';
+        const url = 'https://api.together.xyz/completions';
         const options = {
             method: 'POST',
             headers: {
                 accept: 'application/json',
                 'content-type': 'application/json',
-                Authorization: 'Bearer 9fbbe70c4873c734988eb803532f78c191a0cf29b35bc4c8e1f824c6f54b3751'
+                Authorization: 'Bearer tgp_v1_mnKpT_oYBnVGbs3Yt5b4ZjUh9nWxNkSpx5yFVSLCXTw'
             },
             body: JSON.stringify({
                 model: 'mistralai/Mixtral-8x7B-Instruct-v0.1', //LLM
@@ -63,9 +63,9 @@ function performSearch() {
                 <s>[INST] You are Kirby, a friendly video game character from the Nintendo franchise.
                 You will answer the following question: ${query}.
                 Answer in a super friendly and childlike manner [/INST]`,
-                max_tokens: 512,
+                max_tokens: 200,
                 stop: ['</s>', '[/INST]'],
-                temperature: 0.7,
+                temperature: 0.5,
                 top_p: 0.7,
                 top_k: 50,
                 repetition_penalty: 1,
@@ -79,9 +79,13 @@ function performSearch() {
                 hideLoadingState();
                 const answer = json.choices[0].text; 
                 resultsContainer.style.display = 'block';
-                resultsContainer.innerHTML = `<p>Answer: <strong>Poyo! ${answer}. Have a good day poyo!!</strong></p>`; 
+                resultsContainer.innerHTML = `
+                <h3>Kirby says:</h3>
+                <p>Poyo! ${answer}
+                </p>`; 
             })
             .catch(err => {
+                hideLoadingState();
                 console.error(err);
                 resultsContainer.style.display = 'block';
                 resultsContainer.innerHTML = `<p><strong>Poyo! I am sorry but I am error-ing out right now. Try again later. Have a good day poyo!!</strong></p>`;

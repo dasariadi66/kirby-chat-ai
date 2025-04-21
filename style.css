@@ -94,7 +94,7 @@ button:active {
     margin-top: 20px;
 }
 
-.search-results, .loading-state, .empty-question p {
+.search-results, .loading-state, .empty-question {
     margin: 0;
     line-height: 1.5;
     color: #ff1493; /* Deep pink text */
