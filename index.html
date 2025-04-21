@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ask Kirby using Mistral AI by Dasa</title>
+    <title>Ask Kirby using Mistral AI</title>
     <link rel="stylesheet" href="style.css">
     <link rel="icon" href="favicon.ico" type="image/x-icon">
 </head>
@@ -14,9 +14,10 @@
         <img src="Kirby_RtDDX.png" alt="Kirby Icon">
     </header>
     <div class="search-container">
-        <input type="text" id="searchInput" placeholder="Please enter your question here...">
-        <button onclick="performSearch()">Search</button>
-        <button onclick="clearSearch()">Clear</button>
+        <input type="text" id="searchInput" placeholder="Please enter your question here..." maxlength="75">
+        <button id="askKirby" onclick="performSearch()">Ask Kirby</button>
+        <button onclick="clearAnswer()">Clear Answer</button>
+        <button onclick="clearQuestion()">Clear Question</button>
     </div>
     <div id="searchResults" class="search-results"></div> 
     <script src="script.js"></script>

@@ -1,3 +1,14 @@
+var inputQuery = document.getElementById("searchInput");
+
+//Ask question when user presses enter
+inputQuery.addEventListener("keypress", function(event) {
+  if (event.key === "Enter") {
+    event.preventDefault();
+    document.getElementById("askKirby").click();
+  }
+});
+
+var input = document.getElementById("")
 function performSearch() {
     const query = document.getElementById('searchInput').value;
     const resultsContainer = document.getElementById('searchResults');
@@ -28,7 +39,7 @@ function performSearch() {
             top_p: 0.7,
             top_k: 50,
             repetition_penalty: 1,
-            n: 1
+            n: 1,
         })
     };
 
@@ -46,9 +57,11 @@ function performSearch() {
         });
 }
 
-function clearSearch() {
-    document.getElementById('searchInput').value = '';
+function clearAnswer() {
     document.getElementById('searchResults').innerHTML = ''; 
-    resultsContainer.style.display = 'none';
-    resultsContainer.innerHTML = '';
+    document.getElementById('searchResults').style.display = 'none';
+}
+
+function clearQuestion(){
+    document.getElementById('searchInput').value = '';
 }
