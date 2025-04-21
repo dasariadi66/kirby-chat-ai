@@ -94,9 +94,18 @@ button:active {
     margin-top: 20px;
 }
 
-.search-results, .loading-state, .empty-question {
+.search-results, .loading-state, .empty-question{
     margin: 0;
     line-height: 1.5;
     color: #ff1493; /* Deep pink text */
     font-weight: bold;
 }
+.search-input {
+    color: #ff1491d3; /* Deep pink text */
+    font-weight:900 ;
+}
+
+::placeholder {
+    color: #ff1491d3;
+    opacity: 0.5;
+  }

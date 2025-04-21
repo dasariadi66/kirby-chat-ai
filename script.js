@@ -4,7 +4,7 @@ let loadingState = document.getElementById('loadingState');
 let emptyQuestionDiv = document.getElementById('emptyQuestion')
 
 //Ask question when user presses enter
-inputQuery.addEventListener("keypress", function(event) {
+document.addEventListener("keypress", function(event) {
   if (event.key === "Enter") {
     event.preventDefault();
     document.getElementById("askKirby").click();
@@ -24,13 +24,10 @@ function showEmptyQuestionReply(){
     emptyQuestionDiv.style.display = 'block'
 }
 
-function hideEmptyQuestionReply(){
-    emptyQuestionDiv.style.display = 'none';
-}
-
 function clearAnswer() {
     document.getElementById('searchResults').innerHTML = ''; 
     document.getElementById('searchResults').style.display = 'none';
+    emptyQuestionDiv.style.display = 'none';
 }
 
 function clearQuestion(){
@@ -47,7 +44,7 @@ function performSearch() {
         clearAnswer();
         showEmptyQuestionReply();
     } else if(query){
-        hideEmptyQuestionReply();
+        clearAnswer();
         displayLoadingState();
         const url = 'https://api.together.xyz/completions';
         const options = {
