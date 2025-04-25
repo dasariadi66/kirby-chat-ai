@@ -109,3 +109,78 @@ button:active {
     color: #ff1491d3;
     opacity: 0.5;
   }
+
+@media (max-width: 768px) {
+    header {
+        flex-direction: column; /* Stack images and text vertically */
+        gap: 5px; /* Reduce spacing */
+    }
+
+    h1 {
+        font-size: 2rem; /* Reduce font size for smaller screens */
+    }
+
+    .search-container {
+        flex-direction: column; /* Stack input and buttons vertically */
+        gap: 10px; /* Add spacing between elements */
+        padding: 10px; /* Reduce padding */
+    }
+
+    input[type="text"] {
+        width: 100%; /* Full width for input */
+        font-size: 14px; /* Slightly smaller font size */
+    }
+
+    button {
+        width: 100%; /* Full width for buttons */
+        font-size: 14px; /* Slightly smaller font size */
+    }
+
+    .search-results, .loading-state, .empty-question {
+        font-size: 14px; /* Adjust font size for smaller screens */
+        padding: 10px; /* Reduce padding */
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.5rem; /* Further reduce font size for very small screens */
+    }
+
+    input[type="text"] {
+        font-size: 12px; /* Smaller font size for input */
+    }
+
+    button {
+        font-size: 12px; /* Smaller font size for buttons */
+    }
+}
+
+.chat-history {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 15px;
+    border-radius: 15px;
+    background-color: #fff0f5; /* Light pink background */
+    box-shadow: 0 4px 8px rgba(255, 182, 193, 0.5); /* Soft shadow */
+    overflow-y: auto;
+    max-height: 400px; /* Limit height for scrolling */
+    font-size: 16px;
+    color: #333;
+}
+
+.chat-message {
+    margin-bottom: 15px;
+}
+
+.chat-message.user {
+    text-align: right;
+    color: #ff1493; /* Deep pink for user messages */
+    font-weight: bolder;
+}
+
+.chat-message.kirby, #loadingMessage {
+    text-align: left;
+    color: #ce0086; /* Default color for Kirby's responses */
+    font-weight: bold;
+}

@@ -1,7 +1,8 @@
 //selectors
 let inputQuery = document.getElementById("searchInput");
-let loadingState = document.getElementById('loadingState');
 let emptyQuestionDiv = document.getElementById('emptyQuestion')
+let chatHistory = document.getElementById('chatHistory');
+let loadingState = document.getElementById('loadingMessage')
 
 //Ask question when user presses enter
 document.addEventListener("keypress", function(event) {
@@ -13,21 +14,18 @@ document.addEventListener("keypress", function(event) {
 
 //UI state handling
 function displayLoadingState(){
-    loadingState.style.display = 'block'
+    let loadingMessage = document.createElement('div')
+    loadingMessage.id = 'loadingMessage'
+    loadingMessage.classList.add('chat-message-loading')
+    loadingMessage.textContent = `Kirby is thinking...`
+    chatHistory.appendChild(loadingMessage);
 }
 
 function hideLoadingState(){
-    loadingState.style.display = 'none'
+    chatHistory.removeChild(loadingState)
 };
-
-function showEmptyQuestionReply(){
-    emptyQuestionDiv.style.display = 'block'
-}
-
-function clearAnswer() {
-    document.getElementById('searchResults').innerHTML = ''; 
-    document.getElementById('searchResults').style.display = 'none';
-    emptyQuestionDiv.style.display = 'none';
+function clearChat(){
+    document.getElementById('chatHistory').innerHTML = '';
 }
 
 function clearQuestion(){
@@ -39,13 +37,14 @@ function performSearch() {
     
     const query = document.getElementById('searchInput').value;
     const resultsContainer = document.getElementById('searchResults');
-
+    
     if (!query) {
-        clearAnswer();
-        showEmptyQuestionReply();
+        let emptyMessage = document.createElement('div');
+        emptyMessage.classList.add('chat-message', 'kirby');
+        emptyMessage.textContent = `Kirby says: Poyo! Please ask me something!`;
+        chatHistory.appendChild(emptyMessage);
+
     } else if(query){
-        clearAnswer();
-        displayLoadingState();
         const url = 'https://api.together.xyz/completions';
         const options = {
             method: 'POST',
@@ -71,21 +70,36 @@ function performSearch() {
         };
     
         fetch(url, options)
+            .then(displayLoadingState())
             .then(res => res.json())
             .then(json => {
-                hideLoadingState();
                 const answer = json.choices[0].text; 
-                resultsContainer.style.display = 'block';
-                resultsContainer.innerHTML = `
-                <h3>Kirby says:</h3>
-                <p>Poyo! ${answer}
-                </p>`; 
+                let userMessage = document.createElement('div');
+                userMessage.classList.add('chat-message', 'user');
+                userMessage.textContent = `You: ${query}`;
+                chatHistory.appendChild(userMessage);
+
+                let kirbyMessage = document.createElement('div');
+                kirbyMessage.classList.add('chat-message', 'kirby');
+                kirbyMessage.textContent = `Kirby says: Poyo! ${answer}`;
+                chatHistory.appendChild(kirbyMessage);
+
+                chatHistory.scrollTop = chatHistory.scrollHeight;
+                hideLoadingState();
             })
             .catch(err => {
                 hideLoadingState();
                 console.error(err);
+
+                let errorMessage = document.createElement('div');
+                errorMessage.classList.add('chat-message', 'kirby');
+                errorMessage.textContent = `Kirby says: Poyo! I am sorry but I am error-ing out right now. Try again later.`;
+                chatHistory.appendChild(errorMessage);
+
+                chatHistory.scrollTop = chatHistory.scrollHeight;
                 resultsContainer.style.display = 'block';
                 resultsContainer.innerHTML = `<p><strong>Poyo! I am sorry but I am error-ing out right now. Try again later. Have a good day poyo!!</strong></p>`;
             });
     }
+    clearQuestion();
 }

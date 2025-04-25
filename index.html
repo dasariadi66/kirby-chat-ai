@@ -13,21 +13,16 @@
         <h1>Ask Kirby Anything!</h1>
         <img src="Kirby_RtDDX.png" alt="Kirby Icon">
     </header>
+    <div id="chatHistory" class="chat-history">
+        <!-- Chat history added here -->
+        </div>
+        <div id="searchResults" class="search-results">
+        </div> 
     <div class="search-container">
         <input class="search-input" type="text" id="searchInput" placeholder="Please enter your question here..." maxlength="75">
         <button id="askKirby" onclick="performSearch()">Ask Kirby</button>
-        <button onclick="clearAnswer()">Clear Answer</button>
+        <button onclick="clearChat()">Clear Chat</button>
         <button onclick="clearQuestion()">Clear Question</button>
-    </div>
-    <div id="searchResults" class="search-results">
-    </div> 
-    <div id="loadingState" class="loading-state">
-        <p>Kirby is thinking...</p>
-    </div>
-    <div id="emptyQuestion" class="empty-question">
-        <p>
-        <strong>Poyo! Please ask me something! </strong>
-        </p>
     </div>
     <script src="script.js"></script>
 </body>
