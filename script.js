@@ -1,8 +1,7 @@
 //selectors
-let inputQuery = document.getElementById("searchInput");
 let emptyQuestionDiv = document.getElementById('emptyQuestion')
 let chatHistory = document.getElementById('chatHistory');
-let loadingState = document.getElementById('loadingMessage')
+
 
 //Ask question when user presses enter
 document.addEventListener("keypress", function(event) {
@@ -22,6 +21,7 @@ function displayLoadingState(){
 }
 
 function hideLoadingState(){
+    let loadingState = document.getElementById('loadingMessage')
     chatHistory.removeChild(loadingState)
 };
 function clearChat(){
@@ -34,15 +34,21 @@ function clearQuestion(){
 
 //Performing a call to the LLM
 function performSearch() {
-    
     const query = document.getElementById('searchInput').value;
     const resultsContainer = document.getElementById('searchResults');
-    
+
+    //adding user message onto chatbox
+    let userMessage = document.createElement('div');
+    userMessage.classList.add('chat-message', 'user');
+    userMessage.textContent = `You: ${query}`;
+    chatHistory.appendChild(userMessage);
+    chatHistory.scrollTop = chatHistory.scrollHeight;
     if (!query) {
         let emptyMessage = document.createElement('div');
         emptyMessage.classList.add('chat-message', 'kirby');
         emptyMessage.textContent = `Kirby says: Poyo! Please ask me something!`;
         chatHistory.appendChild(emptyMessage);
+        chatHistory.scrollTop = chatHistory.scrollHeight;
 
     } else if(query){
         const url = 'https://api.together.xyz/completions';
@@ -74,18 +80,12 @@ function performSearch() {
             .then(res => res.json())
             .then(json => {
                 const answer = json.choices[0].text; 
-                let userMessage = document.createElement('div');
-                userMessage.classList.add('chat-message', 'user');
-                userMessage.textContent = `You: ${query}`;
-                chatHistory.appendChild(userMessage);
-
                 let kirbyMessage = document.createElement('div');
                 kirbyMessage.classList.add('chat-message', 'kirby');
                 kirbyMessage.textContent = `Kirby says: Poyo! ${answer}`;
                 chatHistory.appendChild(kirbyMessage);
-
-                chatHistory.scrollTop = chatHistory.scrollHeight;
                 hideLoadingState();
+                chatHistory.scrollTop = chatHistory.scrollHeight;
             })
             .catch(err => {
                 hideLoadingState();
@@ -99,6 +99,7 @@ function performSearch() {
                 chatHistory.scrollTop = chatHistory.scrollHeight;
                 resultsContainer.style.display = 'block';
                 resultsContainer.innerHTML = `<p><strong>Poyo! I am sorry but I am error-ing out right now. Try again later. Have a good day poyo!!</strong></p>`;
+                chatHistory.scrollTop = chatHistory.scrollHeight;
             });
     }
     clearQuestion();
