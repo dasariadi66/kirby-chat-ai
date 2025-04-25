@@ -27,7 +27,8 @@ function hideLoadingState(){
     chatHistory.removeChild(loadingState)
 };
 function clearChat(){
-    document.getElementById('chatHistory').innerHTML = '';
+    chatHistory.innerHTML = '';
+    chatHistory.style.display = 'none';
 }
 
 function clearQuestion(){
@@ -38,7 +39,6 @@ function clearQuestion(){
 function performSearch() {
     chatHistory.style.display = 'block';
     const query = document.getElementById('searchInput').value;
-    const resultsContainer = document.getElementById('searchResults');
 
     //adding user message onto chatbox
     let userMessage = document.createElement('div');
@@ -99,10 +99,6 @@ function performSearch() {
                 errorMessage.classList.add('chat-message', 'kirby');
                 errorMessage.textContent = `Kirby says: Poyo! I am sorry but I am error-ing out right now. Try again later.`;
                 chatHistory.appendChild(errorMessage);
-
-                chatHistory.scrollTop = chatHistory.scrollHeight;
-                resultsContainer.style.display = 'block';
-                resultsContainer.innerHTML = `<p><strong>Poyo! I am sorry but I am error-ing out right now. Try again later. Have a good day poyo!!</strong></p>`;
                 chatHistory.scrollTop = chatHistory.scrollHeight;
             });
     }
