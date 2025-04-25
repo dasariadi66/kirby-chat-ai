@@ -2,6 +2,8 @@
 let emptyQuestionDiv = document.getElementById('emptyQuestion')
 let chatHistory = document.getElementById('chatHistory');
 
+// initial state
+chatHistory.style.display = 'none'
 
 //Ask question when user presses enter
 document.addEventListener("keypress", function(event) {
@@ -34,6 +36,7 @@ function clearQuestion(){
 
 //Performing a call to the LLM
 function performSearch() {
+    chatHistory.style.display = 'block';
     const query = document.getElementById('searchInput').value;
     const resultsContainer = document.getElementById('searchResults');
 
@@ -44,6 +47,7 @@ function performSearch() {
     chatHistory.appendChild(userMessage);
     chatHistory.scrollTop = chatHistory.scrollHeight;
     if (!query) {
+        userMessage.textContent =  `You: 👻`
         let emptyMessage = document.createElement('div');
         emptyMessage.classList.add('chat-message', 'kirby');
         emptyMessage.textContent = `Kirby says: Poyo! Please ask me something!`;
