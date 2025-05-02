@@ -8,8 +8,17 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v4
-    - name: Cypress run
-      uses: cypress-io/github-action@v6
-      with:
-        build: npm run build
-        start: npm start
+
+    - name: Install dependencies
+      uses: npm install
+
+    - name: Build application
+      uses: npm run build
+
+    - name: Start application
+      run: npm start &
+      env:
+        CI: true
+        
+    - name: Run Cypress test
+      run: npm run cypress:run

@@ -1,0 +1,14 @@
+{
+    "name": "kirby-chat-ai",
+    "version": "1.0.0",
+    "scripts": {
+        "build": "echo 'No build step required'",
+        "start": "npx http-server -p 8080",
+        "cypress:open": "cypress open",
+        "cypress:run": "cypress run"
+    },
+    "devDependencies": {
+        "cypress": "^14.3.2",
+        "http-server": "14.1.1"
+    }
+}
