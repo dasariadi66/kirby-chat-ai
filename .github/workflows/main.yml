@@ -10,15 +10,15 @@ jobs:
       uses: actions/checkout@v4
 
     - name: Install dependencies
-      uses: npm install
+      run: npm install
 
     - name: Build application
-      uses: npm run build
+      run: npm run build
 
     - name: Start application
       run: npm start &
       env:
         CI: true
-        
+
     - name: Run Cypress test
       run: npm run cypress:run
